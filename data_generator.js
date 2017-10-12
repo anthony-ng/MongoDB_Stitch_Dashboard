@@ -7,7 +7,7 @@ const TOPPINGS = ["Pepperoni", "Mushrooms", "Onions", "Sausage", "Bacon", "Extra
 const SIZES = ["Personal", "Small", "Medium", "Large", "X-tra Large"];
 
 // Set-up DB Connection
-const client = new stitch.StitchClient("<APP ID>");
+const client = new stitch.StitchClient('salesdashboard-jsydw');
 const db = client.service("mongodb", "mongodb-atlas").db("SalesReporting");
 const salesData = db.collection("Receipts");
 
@@ -35,7 +35,7 @@ function generateReceipts(){
 }
 
 // Authenticate anonymously and then begin to load data
-// client.login().then(datagen);
+client.login().then(generateReceipts);
 
 // Alternatively Use the API Key to load data more securely
-client.authenticate("apiKey", "<API KEY>").then(datagen);
+// client.authenticate("apiKey", "<API KEY>").then(datagen);
