@@ -35,7 +35,7 @@ function generateReceipts(){
 }
 
 // Authenticate anonymously and then begin to load data
-client.login().then(generateReceipts);
+// client.login().then(generateReceipts);
 
 // Alternatively Use the API Key to load data more securely
-// client.authenticate("apiKey", "<API KEY>").then(datagen);
+client.authenticate("apiKey", "b1ovTmJ6N00krLi6UfQin6WDgd2Rosx6VKLFtGlIF0HFyJqdWp9cHjph9SAGyyWL").then(generateReceipts);
