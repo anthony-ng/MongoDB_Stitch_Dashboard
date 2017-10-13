@@ -1,5 +1,6 @@
 const stitch = require("mongodb-stitch"); // Set-up the MongoDB connection
 const chance = require("chance").Chance(); // Package for random variables
+const dotenv = require('dotenv').config();
 
 // Seeds for the random data
 const LOCATIONS = ["Store 1", "Store 2", "Store 3"];
@@ -7,7 +8,7 @@ const TOPPINGS = ["Pepperoni", "Mushrooms", "Onions", "Sausage", "Bacon", "Extra
 const SIZES = ["Personal", "Small", "Medium", "Large", "X-tra Large"];
 
 // Set-up DB Connection
-const client = new stitch.StitchClient(APP_ID);
+const client = new stitch.StitchClient(process.env.APPID);
 const db = client.service("mongodb", "mongodb-atlas").db("SalesReporting");
 const salesData = db.collection("Receipts");
 
@@ -38,4 +39,4 @@ function generateReceipts(){
 // client.login().then(generateReceipts);
 
 // Alternatively Use the API Key to load data more securely
-client.authenticate("apiKey", API_KEY).then(generateReceipts);
+client.authenticate("apiKey", process.env.API_KEY).then(generateReceipts);
