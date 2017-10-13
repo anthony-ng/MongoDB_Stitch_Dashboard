@@ -45,7 +45,7 @@ client.login().then(generateReceipts);
 // client.authenticate("apiKey", process.env.API_KEY).then(generateReceipts);
 
 app.set('port', (process.env.PORT || 5000));
-
+app.use("/style.css", express.static(__dirname + '/style.css'));
 app.get('/', function(request, response) {
     response.sendFile(__dirname + '/index.html');
 }).listen(app.get('port'), function() {
