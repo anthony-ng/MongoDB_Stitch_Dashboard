@@ -6,8 +6,7 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
-        const dotenv = require('dotenv').config();
-        const client = new stitch.StitchClient(process.env.APPID);
+        const client = new stitch.StitchClient('salesdashboard-jsydw');
         const cluster = client.service("mongodb", "mongodb-atlas")
         const db = cluster.db("SalesReporting");
         const tempData = db.collection("Receipts");
@@ -15,9 +14,9 @@
 </head>
 
 <!-- (WITHOUT AUTH)  -->
-<!-- <body onload="client.login().then(function(){buildGraph()});"> -->
+<body onload="client.login().then(function(){buildGraph()});">
 
-<body onload="simpleAuth();">
+<!-- <body onload="simpleAuth();"> -->
 
     <h1 align="center">Sales Dashboard</h1>
     <div id="graph1" class="aGraph" style="position:absolute;top:0;left:0; float:left;"></div>

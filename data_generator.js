@@ -31,12 +31,12 @@ function generateReceipts(){
   // Insert into MongoDB
   salesData.insertOne(receipt).then(
     // Wait for a random amount of time
-    setTimeout(generateReceipts, chance.integer({min: 0, max: 3000}))
+    setTimeout(generateReceipts, chance.integer({min: 0, max: 1000}))
   );
 }
 
 // Authenticate anonymously and then begin to load data
-// client.login().then(generateReceipts);
+client.login().then(generateReceipts);
 
 // Alternatively Use the API Key to load data more securely
-client.authenticate("apiKey", process.env.API_KEY).then(generateReceipts);
+// client.authenticate("apiKey", process.env.API_KEY).then(generateReceipts);
