@@ -8,7 +8,7 @@ const TOPPINGS = ["Pepperoni", "Mushrooms", "Onions", "Sausage", "Bacon", "Extra
 const SIZES = ["Personal", "Small", "Medium", "Large", "X-tra Large"];
 
 // Set-up DB Connection
-const client = new stitch.StitchClient(process.env.APPID);
+const client = new stitch.StitchClient('salesdashboard-jsydw');
 const db = client.service("mongodb", "mongodb-atlas").db("SalesReporting");
 const salesData = db.collection("Receipts");
 
