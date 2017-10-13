@@ -7,7 +7,7 @@ const TOPPINGS = ["Pepperoni", "Mushrooms", "Onions", "Sausage", "Bacon", "Extra
 const SIZES = ["Personal", "Small", "Medium", "Large", "X-tra Large"];
 
 // Set-up DB Connection
-const client = new stitch.StitchClient('salesdashboard-jsydw');
+const client = new stitch.StitchClient(APP_ID);
 const db = client.service("mongodb", "mongodb-atlas").db("SalesReporting");
 const salesData = db.collection("Receipts");
 
@@ -38,4 +38,4 @@ function generateReceipts(){
 // client.login().then(generateReceipts);
 
 // Alternatively Use the API Key to load data more securely
-client.authenticate("apiKey", "b1ovTmJ6N00krLi6UfQin6WDgd2Rosx6VKLFtGlIF0HFyJqdWp9cHjph9SAGyyWL").then(generateReceipts);
+client.authenticate("apiKey", API_KEY).then(generateReceipts);

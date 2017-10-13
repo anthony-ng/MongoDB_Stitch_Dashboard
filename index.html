@@ -5,7 +5,7 @@
   <script src="https://d3js.org/d3.v4.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <script>
-    const client = new stitch.StitchClient("salesdashboard-jsydw");
+    const client = new stitch.StitchClient(APP_ID);
     const cluster = client.service("mongodb", "mongodb-atlas")
     const db = cluster.db("SalesReporting");
     const tempData = db.collection("Receipts");
