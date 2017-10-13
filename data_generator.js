@@ -34,7 +34,7 @@ function generateReceipts(){
   // Insert into MongoDB
   salesData.insertOne(receipt).then(
     // Wait for a random amount of time
-    setTimeout(generateReceipts, chance.integer({min: 0, max: 1000}))
+    setTimeout(generateReceipts, chance.integer({min: 0, max: 3000}))
   );
 }
 

@@ -20,7 +20,11 @@
     <!-- <body onload="simpleAuth();"> -->
 
     <h1 align="center">Sales Dashboard</h1>
-    <div id="graph1" class="aGraph" style="position:absolute;top:0;left:0; float:left;"></div>
+    <div id="graph1" class="aGraph"></div>
+    <h1 align="center">Engineering Dashboard</h1>
+    <div id="graph2" class="aGraph"></div>
+    <h1 align="center">Marketing Dashboard</h1>
+    <div id="graph3" class="aGraph"></div>
     <script>
         // Define dimensions of graph using window size/time
         var m = [.15 * window.innerHeight, .15 * window.innerHeight, .1 * window.innerWidth, .1 * window.innerWidth],
@@ -49,7 +53,17 @@
         var graph = d3.select("#graph1").append("svg")
             .attr("width", w + m[1] + m[3])
             .attr("height", h + m[0] + m[2])
+        var graph2 = d3.select("#graph2").append("svg")
+            .attr("width", w + m[1] + m[3])
+            .attr("height", h + m[0] + m[2])
+        var graph3 = d3.select("#graph3").append("svg")
+            .attr("width", w + m[1] + m[3])
+            .attr("height", h + m[0] + m[2])
         var g = graph.append("g")
+            .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
+        var g2 = graph2.append("g")
+            .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
+        var g3 = graph3.append("g")
             .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
         // Add the x-axis
@@ -57,9 +71,25 @@
             .attr("class", "axis axis-x")
             .attr("transform", "translate(0," + h + ")")
             .call(x.axis = d3.axisBottom().scale(x));
+        var xAxis2 = g2.append("g")
+            .attr("class", "axis axis-x")
+            .attr("transform", "translate(0," + h + ")")
+            .call(x.axis = d3.axisBottom().scale(x));
+        var xAxis3 = g3.append("g")
+            .attr("class", "axis axis-x")
+            .attr("transform", "translate(0," + h + ")")
+            .call(x.axis = d3.axisBottom().scale(x));
 
         // Add the y-axis
         var yAxis = g.append("g")
+            .attr("class", "axis axis-y")
+            .attr("transform", "translate(-25,0)")
+            .call(y.axis = d3.axisLeft().scale(y));
+        var yAxis2 = g2.append("g")
+            .attr("class", "axis axis-y")
+            .attr("transform", "translate(-25,0)")
+            .call(y.axis = d3.axisLeft().scale(y));
+        var yAxis3 = g3.append("g")
             .attr("class", "axis axis-y")
             .attr("transform", "translate(-25,0)")
             .call(y.axis = d3.axisLeft().scale(y));
@@ -89,10 +119,14 @@
 
                 // Plot the data and then call the refresh loop
                 g.path = g.append("path").datum(SalesLine).attr("stroke", "mediumturquoise").attr("d", line);
+                g2.path = g2.append("path").datum(SalesLine).attr("stroke", "mediumturquoise").attr("d", line);
+                g3.path = g3.append("path").datum(SalesLine).attr("stroke", "mediumturquoise").attr("d", line);
 
                 // Call function to refresh the graph
                 setTimeout(function() {
                     refreshGraph(SalesLine, g.path);
+                    refreshGraph(SalesLine, g2.path);
+                    refreshGraph(SalesLine, g3.path);
                 }, 1000);
             });
         }
@@ -124,6 +158,8 @@
                     // Slide x-axis left
                     x.domain([now - duration, now])
                     xAxis.transition().duration(1000).call(x.axis)
+                    xAxis2.transition().duration(1000).call(x.axis)
+                    xAxis3.transition().duration(1000).call(x.axis)
 
                     // Slide path
                     path.transition().duration(1000).attr("d", line)
